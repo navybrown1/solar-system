@@ -222,8 +222,13 @@
         <p id="planet-description">Description here</p>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- Three.js from reliable CDN -->
+    <script src="https://unpkg.com/three@0.128.0/build/three.min.js"></script>
     <script>
+        // Check if Three.js loaded successfully
+        if (typeof THREE === 'undefined') {
+            document.body.innerHTML = '<div style="color:white;text-align:center;padding:50px;font-family:sans-serif;"><h1>Loading Error</h1><p>Three.js failed to load. Please check your internet connection.</p></div>';
+        } else {
         // Planet data with realistic information
         const planetData = {
             sun: {
@@ -602,6 +607,8 @@
             camera.updateProjectionMatrix();
             renderer.setSize(window.innerWidth, window.innerHeight);
         });
+
+        } // End of THREE check
     </script>
 </body>
 </html>
